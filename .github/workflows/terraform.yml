@@ -76,11 +76,11 @@ jobs:
 
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
     - name: Setup Terraform Organization
-      run: EXPORT ${{ secrets.TF_ORG}}
+      run: export TF_CLOUD_ORGANIZATION=${{ secrets.TF_ORG}}
 
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
     - name: Setup Terraform Workspace
-      run: EXPORT ${{ secrets.TF_WORKSPACE}}
+      run: export TF_WORKSPACE=${{ secrets.TF_WORKSPACE}}
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
