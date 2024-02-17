@@ -9,7 +9,7 @@ data "archive_file" "init" {
 }
 
 resource "aws_lambda_function" "epb_lambda" {
-  filename      = data.archive_file.init
+  filename      = data.archive_file.init.output_path
   function_name = "epb_lambda_name"
   role          = aws_iam_role.lambda_role.arn
   runtime       = "java17"
