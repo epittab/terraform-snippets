@@ -1,9 +1,9 @@
-variable "org" {
+variable "aws_region" {
   type    = string
-  default = "example-org-1bf7c7"
+  default = "us-east-1"
 }
 
-variable "workspace" {
+variable "aws_region_az" {
   type    = string
-  default = "example-workspace"
+  default = "us-east-1c"
 }
