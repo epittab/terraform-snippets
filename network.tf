@@ -36,3 +36,5 @@ resource "aws_security_group" "epb-sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
+// use AmazonVPCFullAccess policy
