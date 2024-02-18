@@ -53,9 +53,9 @@ on:
     - cron:  '30 3 * * *'
 
 env:
-  TF_CLOUD_ORGANIZATION: "example-org-1bf7c7"
+  TF_CLOUD_ORGANIZATION: ${{ secrets.ORGANIZATION }}
   TF_CLOUD_HOSTNAME: "app.terraform.io"
-  TF_WORKSPACE: "example-workspace"
+  TF_WORKSPACE: ${{ secrets.WORKSPACE }}
 permissions:
   contents: read
 
