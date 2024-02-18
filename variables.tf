@@ -7,3 +7,7 @@ variable "aws_region_az" {
   type    = string
   default = "us-east-1c"
 }
+
+variable "TF_WORKSPACE" {
+  
+}
