@@ -89,7 +89,7 @@ jobs:
     # Generates an execution plan for Terraform
     - name: Terraform Plan
       run: |
-        export TF_WORKSPACE="example-workspace"
+        export TF_VAR_TF_WORKSPACE="example-workspace"
         terraform plan -input=false
 
       # On push to "main", build or change infrastructure according to Terraform configuration files
