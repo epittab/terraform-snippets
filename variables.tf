@@ -8,11 +8,11 @@ variable "aws_region_az" {
   default = "us-east-1c"
 }
 
-variable "TF_CLOUD_ORGANIZATION" {
-}
+# variable "TF_CLOUD_ORGANIZATION" {
+# }
 
-variable "TF_CLOUD_HOSTNAME" {
-}
+# variable "TF_CLOUD_HOSTNAME" {
+# }
 
-variable "TF_WORKSPACE" {
-}
+# variable "TF_WORKSPACE" {
+# }
