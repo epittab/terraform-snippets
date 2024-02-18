@@ -49,6 +49,9 @@ on:
     branches: [ "main", "dev/**" ]
   pull_request:
     branches: [ "main" ]
+  schedule: 
+    - cron:  '30 3 * * *'
+
 
 permissions:
   contents: read
@@ -92,3 +95,7 @@ jobs:
     - name: Terraform Apply
       if: github.event_name == 'pull_request'
       run: terraform apply -auto-approve -input=false
+
+    - name: Terraform Destroy
+      if: github.event == 'schedule'
+      run: terraform destroy -auto-approve -input=false
