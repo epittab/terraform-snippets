@@ -22,9 +22,4 @@ provider "aws" {
   region = var.aws_region
 }
 
-resource "null_resource" "name" {
-  count = 1
-
-}
-
 
