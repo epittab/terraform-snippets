@@ -12,6 +12,6 @@ resource "aws_lambda_function" "epb_test_lambda" {
   filename      = data.archive_file.init.output_path
   function_name = "epb_lambda_name"
   role          = aws_iam_role.lambda_role.arn
-  runtime       = "nodejs20.x"
+  runtime       = "nodejs18.x"
   handler       = "index.handler"
 }
