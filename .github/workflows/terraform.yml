@@ -100,6 +100,7 @@ jobs:
       if: github.event_name == 'pull_request'
       run: terraform apply -auto-approve -input=false
 
+      # Destroys resources regularly as a cost reduction strategy
     - name: Terraform Destroy
       if: github.event == 'schedule'
       run: terraform destroy -auto-approve -input=false
