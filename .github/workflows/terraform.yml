@@ -50,7 +50,7 @@ on:
   pull_request:
     branches: [ "main" ]
   schedule: 
-    - cron:  '30 6 * * *'
+    - cron:  '30 10 * * *'
 
 env:
   TF_CLOUD_ORGANIZATION: ${{ secrets.ORGANIZATION }}
@@ -102,5 +102,5 @@ jobs:
 
       # Destroys resources regularly as a cost reduction strategy
     - name: Terraform Destroy
-      if: github.event.schedule == '30 6 * * *'
+      if: github.event.schedule == '30 10 * * *'
       run: terraform destroy -auto-approve -input=false
