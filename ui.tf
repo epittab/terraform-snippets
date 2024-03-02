@@ -25,7 +25,7 @@ resource "aws_s3_bucket_policy" "allow_access_to_ui" {
 }
 
 resource "aws_s3_bucket_website_configuration" "example" {
-  bucket = aws_s3_bucket.example.id
+  bucket = aws_s3_bucket.ui.id
 
   index_document {
     suffix = "index.html"
