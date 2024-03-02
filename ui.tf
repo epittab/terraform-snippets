@@ -17,9 +17,10 @@ resource "aws_s3_bucket_policy" "allow_access_to_ui" {
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [{
-      Effect   = "Allow"
-      Action   = ["s3:GetObject"]
-      Resource = ["arn:aws:s3:::ui-app-bucket/*"]
+      Principal = "*"
+      Effect    = "Allow"
+      Action    = ["s3:GetObject"]
+      Resource  = ["arn:aws:s3:::ui-app-bucket/*"]
     }]
   })
 }
