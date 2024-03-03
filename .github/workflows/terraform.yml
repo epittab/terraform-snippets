@@ -100,6 +100,11 @@ jobs:
       if: github.event_name == 'pull_request'
       run: terraform apply -auto-approve -input=false
 
+    # Destroys resources regularly as a cost reduction strategy
+    - name: Delete S3 Objects
+      if: github.event == 'schedule'
+      run: aws s3 rm s3://ui-app-bucket --recursive
+      
       # Destroys resources regularly as a cost reduction strategy
     - name: Terraform Destroy
       if: github.event == 'schedule'
