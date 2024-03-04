@@ -102,7 +102,7 @@ jobs:
 
     # Destroys resources regularly as a cost reduction strategy
     - name: Delete S3 Objects
-      if: github.event == 'schedule'
+      if: github.event.schedule == '45 13 * * *'
       run: aws s3 rm s3://ui-app-bucket --recursive
       
       # Destroys resources regularly as a cost reduction strategy
