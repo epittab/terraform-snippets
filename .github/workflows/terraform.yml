@@ -103,7 +103,11 @@ jobs:
     # Destroys resources regularly as a cost reduction strategy
     - name: Delete S3 Objects
       if: github.event == 'schedule'
-      run: aws s3 rm s3://ui-app-bucket --recursive
+      run: aws s3 rm s3://ui-app-bucket/ --recursive
+      env: 
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: "us-east-1"
       
       # Destroys resources regularly as a cost reduction strategy
     - name: Terraform Destroy
