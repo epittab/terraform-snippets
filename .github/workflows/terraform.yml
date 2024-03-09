@@ -113,7 +113,7 @@ jobs:
 
     # Destroys object in bucket to allow for destroy
     - name: Delete S3 Objects
-      if: ${{ steps.checks3.outputs.test }} == '' 
+      if: ${{ steps.checks3.outputs.test }} != '' 
     # if: github.event.schedule == '45 13 * * *' 
       run: aws s3 rm s3://ui-app-bucket/ --recursive
       env: 
