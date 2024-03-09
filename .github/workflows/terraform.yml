@@ -103,6 +103,7 @@ jobs:
       if: github.event_name == 'pull_request'
       run: terraform apply -auto-approve -input=false
     
+      #implementing check to validate if bucket exists
     - name: Check if S3 exists
       id: checks3
       run: aws s3 ls >> $GITHUB_OUTPUT
