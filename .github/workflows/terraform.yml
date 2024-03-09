@@ -66,7 +66,9 @@ jobs:
     environment: production
 
     outputs:
-      output1: ${{ steps.checks3.outputs.test }}
+      result: ${{ steps.checks3.outputs.result }}
+        # description: "Whether to destroy s3 object"
+        # value: ${{ steps.checks3.outputs.result }}
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
