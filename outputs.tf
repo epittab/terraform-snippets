@@ -2,10 +2,6 @@ output "domain" {
   value = aws_s3_bucket_website_configuration.ui.website_endpoint
 }
 
-output "cognito_endpoint" {
-  value = aws_cognito_user_pool.pool.endpoint
-}
-
-output "cognito_domain" {
-  value = aws_cognito_user_pool.pool.domain
+output "cognito" {
+  value = "https://${aws_cognito_user_pool.pool.domain}.auth.${var.aws_region}.amazoncognito.com/login?response_type=code&client_id=${aws_cognito_user_pool_client.userpool_client.id}&redirect_uri=${var.callback_url}"
 }
