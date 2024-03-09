@@ -5,3 +5,7 @@ output "domain" {
 output "cognito_endpoint" {
   value = aws_cognito_user_pool.pool.endpoint
 }
+
+output "cognito_domain" {
+  value = aws_cognito_user_pool.pool.domain
+}
