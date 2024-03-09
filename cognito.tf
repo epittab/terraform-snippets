@@ -11,26 +11,22 @@ resource "aws_cognito_user_pool" "pool" {
       name     = "verified_email"
       priority = 1
     }
+  }
+  email_configuration {
+    email_sending_account = "COGNITO_DEFAULT"
+  }
 
-    email_configuration {
-      email_sending_account = "COGNITO_DEFAULT"
-    }
+  username_configuration {
+    case_sensitive = true
+  }
 
-    username_configuration {
-      case_sensitive = true
-    }
-
-    password_policy {
-      minimum_length                   = 8
-      require_lowercase                = true
-      require_numbers                  = true
-      require_symbols                  = true
-      require_uppercase                = true
-      temporary_password_validity_days = 7
-    }
-
-
-
+  password_policy {
+    minimum_length                   = 8
+    require_lowercase                = true
+    require_numbers                  = true
+    require_symbols                  = true
+    require_uppercase                = true
+    temporary_password_validity_days = 7
   }
 }
 
