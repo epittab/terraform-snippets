@@ -65,10 +65,6 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
 
-    outputs:
-      result: ${{ steps.checks3.outputs.result }}
-
-
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
       run:
@@ -104,7 +100,21 @@ jobs:
       if: github.event_name == 'pull_request'
       run: terraform apply -auto-approve -input=false
     
-      #implementing check to validate if bucket exists
+  destroy:
+    name: 'Destroy'
+    runs-on: ubuntu-latest
+    environment: production
+
+    outputs:
+      result: ${{ steps.checks3.outputs.result }}
+
+
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+    #implementing check to validate if bucket exists
     - name: Check if S3 exists
       id: checks3
       run: | 
@@ -114,8 +124,7 @@ jobs:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_REGION: "us-east-1"
-
-    # Destroys object in bucket to allow for destroy
+      # Destroys object in bucket to allow for destroy
     - name: Delete S3 Objects
       if: contains( steps.checks3.outputs.result , 'ui-app-bucket') 
     # if: github.event.schedule == '45 13 * * *' 
