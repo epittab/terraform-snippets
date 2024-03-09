@@ -20,8 +20,7 @@ jobs:
     name: 'Terraform'
     runs-on: ubuntu-latest
     environment: production
-    if: github.event.schedule == '45 13 * * *' 
-    # if: github.event_name == 'pull_request' || github.event_name == 'push' 
+    if: github.event_name == 'pull_request' || github.event_name == 'push' 
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
@@ -62,7 +61,7 @@ jobs:
     name: 'Destroy'
     runs-on: ubuntu-latest
     environment: production
-    # if: github.event.schedule == '45 13 * * *' 
+    if: github.event.schedule == '45 13 * * *' 
     outputs:
       result: ${{ steps.checks3.outputs.result }}
 
