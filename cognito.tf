@@ -39,10 +39,6 @@ resource "aws_cognito_user_pool" "pool" {
     email_sending_account = "COGNITO_DEFAULT"
   }
 
-  username_configuration {
-    case_sensitive = true
-  }
-
   password_policy {
     minimum_length                   = 8
     require_lowercase                = true
