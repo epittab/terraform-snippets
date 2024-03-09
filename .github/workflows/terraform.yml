@@ -111,7 +111,7 @@ jobs:
       run: | 
         resp=$(aws s3 ls) 
         echo $resp
-        result=$resp >> $GITHUB_OUTPUT
+        echo "result=$resp" >> $GITHUB_OUTPUT
         echo ${{ steps.checks3.outputs.result }}
         echo ${{ steps.checks3.outputs.output1 }}
         echo ${{ steps.checks3.outputs.test }}        
