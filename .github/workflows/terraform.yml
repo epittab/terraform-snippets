@@ -113,18 +113,13 @@ jobs:
 
     # Destroys object in bucket to allow for destroy
     - name: Delete S3 Objects
-      if: ${{ steps.checks3.outputs.test }} != null
+      if: contains( ${{ steps.checks3.outputs.test }}, 'ui-app-bucket')
     # if: github.event.schedule == '45 13 * * *' 
-      run: | 
-        echo "${{ steps.checks3.outputs.test }} output"
-        if [[ -n ${{ env.check }} ]]; then aws s3 rm s3://ui-app-bucket/ --recursive;
-        else exit 0; 
-        fi
+      run: aws s3 rm s3://ui-app-bucket/ --recursive
       env: 
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_REGION: "us-east-1"
-        check: ${{ steps.checks3.outputs.test }}
 
       
       # Destroys resources regularly as a cost reduction strategy
