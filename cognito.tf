@@ -9,8 +9,20 @@ resource "aws_cognito_user_pool_domain" "main" {
   user_pool_id = aws_cognito_user_pool.pool.id
 }
 
+resource "aws_cognito_user_pool_client" "userpool_client" {
+  name                                 = "client"
+  user_pool_id                         = aws_cognito_user_pool.pool.id
+  callback_urls                        = ["http://localhost:5173/"]
+  allowed_oauth_flows_user_pool_client = true
+  allowed_oauth_flows                  = ["code", "implicit"]
+  allowed_oauth_scopes                 = ["email", "openid"]
+  supported_identity_providers         = ["COGNITO"]
+}
+
+
 resource "aws_cognito_user_pool" "pool" {
-  name = "my-test-pool"
+  name                     = "my-test-pool"
+  auto_verified_attributes = ["email"]
 
   account_recovery_setting {
     recovery_mechanism {
