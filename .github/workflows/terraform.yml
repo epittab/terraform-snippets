@@ -108,6 +108,7 @@ jobs:
       id: checks3
       run: | 
         resp=$(aws s3 ls) 
+        echo $resp
         result=$resp >> $GITHUB_OUTPUT
       env: 
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
