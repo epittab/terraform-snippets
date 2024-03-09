@@ -67,8 +67,7 @@ jobs:
 
     outputs:
       result: ${{ steps.checks3.outputs.result }}
-        # description: "Whether to destroy s3 object"
-        # value: ${{ steps.checks3.outputs.result }}
+
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
@@ -111,10 +110,7 @@ jobs:
       run: | 
         resp=$(aws s3 ls) 
         echo $resp
-        echo "result=$resp" >> $GITHUB_OUTPUT
-        echo ${{ steps.checks3.outputs.result }}
-        echo ${{ steps.checks3.outputs.output1 }}
-        echo ${{ steps.checks3.outputs.test }}        
+        echo "result=$resp" >> $GITHUB_OUTPUT    
       env: 
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
