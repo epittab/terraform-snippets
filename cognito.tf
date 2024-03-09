@@ -4,7 +4,7 @@ resource "random_string" "suffix" {
 }
 
 resource "aws_cognito_user_pool_domain" "main" {
-  domain       = "example-domain-${random_string.suffix}"
+  domain       = "example-domain-${random_string.suffix.result}"
   user_pool_id = aws_cognito_user_pool.pool.id
 }
 
