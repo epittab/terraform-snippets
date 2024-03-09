@@ -117,7 +117,9 @@ jobs:
     # if: github.event.schedule == '45 13 * * *' 
       run: | 
         echo "${{ steps.checks3.outputs.test }} output"
-        aws s3 rm s3://ui-app-bucket/ --recursive
+        if [[ ${{ steps.checks3.outputs.test }} != "" ]]; then aws s3 rm s3://ui-app-bucket/ --recursive;
+        else exit 0; 
+        fi
       env: 
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
