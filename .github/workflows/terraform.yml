@@ -65,8 +65,8 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
 
-    outputs:
-      output1: ${{ steps.checks3.outputs.test }}
+    # outputs:
+    #   output1: ${{ steps.checks3.outputs.test }}
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
@@ -106,7 +106,9 @@ jobs:
       #implementing check to validate if bucket exists
     - name: Check if S3 exists
       id: checks3
-      run: aws s3 ls >> "$GITHUB_OUTPUT"
+      run: | 
+        resp = $(aws s3 ls) 
+        result = $resp >> "$GITHUB_OUTPUT"
       env: 
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -114,7 +116,7 @@ jobs:
 
     # Destroys object in bucket to allow for destroy
     - name: Delete S3 Objects
-      if: contains( steps.checks3.outputs.test , 'ui-app-bucket') 
+      if: contains( steps.checks3.outputs.result , 'ui-app-bucket') 
     # if: github.event.schedule == '45 13 * * *' 
       run: aws s3 rm s3://ui-app-bucket/ --recursive
       env: 
