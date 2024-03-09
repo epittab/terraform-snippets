@@ -24,17 +24,8 @@ resource "aws_cognito_user_pool" "pool" {
   name                     = "my-test-pool"
   auto_verified_attributes = ["email"]
 
-  schema {
-    attribute_data_type      = "String"
-    developer_only_attribute = false
-    mutable                  = true
-    name                     = "email"
-    required                 = true
-
-    string_attribute_constraints {
-      min_length = 3
-      max_length = 256
-    }
+  verification_message_template {
+    default_email_option = "CONFIRM_WITH_CODE"
   }
 
   account_recovery_setting {
