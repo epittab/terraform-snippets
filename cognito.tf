@@ -21,7 +21,9 @@ resource "aws_cognito_user_pool_client" "userpool_client" {
 
 
 resource "aws_cognito_user_pool" "pool" {
-  name                     = "my-test-pool"
+  name = "my-test-pool"
+
+  username_attributes      = ["email"]
   auto_verified_attributes = ["email"]
 
 
