@@ -36,7 +36,7 @@ resource "aws_s3_bucket_policy" "allow_access_to_ui" {
       Resource  = ["arn:aws:s3:::ui-app-bucket/*"]
     }]
   })
-  depends_on = [ aws_s3_bucket.ui, aws_s3_bucket_public_access_block.allow_access_to_ui, aws_s3_bucket_website_configuration.ui ]
+  depends_on = [aws_s3_bucket.ui, aws_s3_bucket_public_access_block.allow_access_to_ui, aws_s3_bucket_website_configuration.ui]
 }
 
 
