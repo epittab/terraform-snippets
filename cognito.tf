@@ -23,7 +23,16 @@ resource "aws_cognito_user_pool_client" "userpool_client" {
 resource "aws_cognito_user_pool" "pool" {
   name                     = "my-test-pool"
   auto_verified_attributes = ["email"]
-
+  schema {
+    attribute_data_type = "String"
+    mutable             = true
+    name                = "email"
+    required            = true
+    string_attribute_constraints {
+      min_length = 1
+      max_length = 2048
+    }
+  }
   verification_message_template {
     default_email_option = "CONFIRM_WITH_CODE"
   }
