@@ -45,7 +45,7 @@ resource "aws_iam_role_policy_attachment" "epb_lambda_privileges" {
 
 
 resource "aws_iam_policy" "ddb_policy" {
-  name = "logging_policy"
+  name = "ddb_policy"
   policy = jsonencode({
     "Version" : "2012-10-17",
     "Statement" : [
