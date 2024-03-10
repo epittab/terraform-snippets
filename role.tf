@@ -40,3 +40,29 @@ resource "aws_iam_role_policy_attachment" "epb_lambda_privileges" {
   policy_arn = aws_iam_policy.logging_policy.arn
   role       = aws_iam_role.lambda_role.name
 }
+
+
+
+
+resource "aws_iam_policy" "ddb_policy" {
+  name = "logging_policy"
+  policy = jsonencode({
+    "Version" : "2012-10-17",
+    "Statement" : [
+      {
+        "Action" : [
+          "dynamodb:*"
+        ],
+        "Effect" : "Allow",
+        "Resource" : "*"
+      }
+
+    ]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "epb_lambda_to_ddb" {
+  policy_arn = aws_iam_policy.ddb_policy.arn
+  role       = aws_iam_role.lambda_role.name
+}
+
