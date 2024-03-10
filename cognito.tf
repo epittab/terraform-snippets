@@ -9,8 +9,27 @@ resource "aws_cognito_user_pool_domain" "main" {
   user_pool_id = aws_cognito_user_pool.pool.id
 }
 
+resource "aws_cognito_user_pool_client" "userpool_client" {
+  name                                 = "client"
+  user_pool_id                         = aws_cognito_user_pool.pool.id
+  callback_urls                        = [var.callback_url]
+  allowed_oauth_flows_user_pool_client = true
+  allowed_oauth_flows                  = ["code", "implicit"]
+  allowed_oauth_scopes                 = ["email", "openid"]
+  supported_identity_providers         = ["COGNITO"]
+}
+
+
 resource "aws_cognito_user_pool" "pool" {
   name = "my-test-pool"
+
+  username_attributes      = ["email"]
+  auto_verified_attributes = ["email"]
+
+
+  verification_message_template {
+    default_email_option = "CONFIRM_WITH_CODE"
+  }
 
   account_recovery_setting {
     recovery_mechanism {
@@ -20,10 +39,6 @@ resource "aws_cognito_user_pool" "pool" {
   }
   email_configuration {
     email_sending_account = "COGNITO_DEFAULT"
-  }
-
-  username_configuration {
-    case_sensitive = true
   }
 
   password_policy {
