@@ -10,6 +10,6 @@ variable "aws_region_az" {
 
 variable "callback_url" {
   type    = string
-  default = "http://localhost:5173/"
+  default = "http://localhost:5173/auth/token"
 }
 
