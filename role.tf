@@ -41,9 +41,6 @@ resource "aws_iam_role_policy_attachment" "epb_lambda_privileges" {
   role       = aws_iam_role.lambda_role.name
 }
 
-
-
-
 resource "aws_iam_policy" "ddb_policy" {
   name = "ddb_policy"
   policy = jsonencode({
