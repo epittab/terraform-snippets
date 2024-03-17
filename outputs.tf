@@ -1,5 +1,5 @@
-output "domain" {
-  value = aws_s3_bucket_website_configuration.ui.website_endpoint
+output "pool_id" {
+  value = aws_cognito_user_pool.pool.id
 }
 
 output "cognito" {
