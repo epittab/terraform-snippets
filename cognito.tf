@@ -17,12 +17,12 @@ resource "aws_cognito_user_pool_client" "userpool_client" {
   allowed_oauth_flows                  = ["code"]
   allowed_oauth_scopes                 = ["email", "openid"]
   supported_identity_providers         = ["COGNITO"]
-  access_token_validity = 2
-  id_token_validity = 2
-  refresh_token_validity = 1
+  access_token_validity                = 2
+  id_token_validity                    = 2
+  refresh_token_validity               = 1
   token_validity_units {
-    access_token = "hours"
-    id_token = "hours"
+    access_token  = "hours"
+    id_token      = "hours"
     refresh_token = "days"
   }
 }
