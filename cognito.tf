@@ -14,9 +14,17 @@ resource "aws_cognito_user_pool_client" "userpool_client" {
   user_pool_id                         = aws_cognito_user_pool.pool.id
   callback_urls                        = [var.callback_url]
   allowed_oauth_flows_user_pool_client = true
-  allowed_oauth_flows                  = ["code", "implicit"]
+  allowed_oauth_flows                  = ["code"]
   allowed_oauth_scopes                 = ["email", "openid"]
   supported_identity_providers         = ["COGNITO"]
+  access_token_validity = 2
+  id_token_validity = 2
+  refresh_token_validity = 1
+  token_validity_units {
+    access_token = "hours"
+    id_token = "hours"
+    refresh_token = "days"
+  }
 }
 
 
