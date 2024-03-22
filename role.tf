@@ -63,3 +63,39 @@ resource "aws_iam_role_policy_attachment" "epb_lambda_to_ddb" {
   role       = aws_iam_role.lambda_role.name
 }
 
+
+resource "aws_iam_role" "apigw_role" {
+  name = "epb-apigw-role"
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Action = "sts:AssumeRole"
+      Effect = "Allow"
+      Principal = {
+        Service = "apigateway.amazonaws.com"
+      }
+    }]
+  })
+}
+
+resource "aws_iam_policy" "invoke_lambda" {
+  name = "invoke_lambda"
+  policy = jsonencode({
+    "Version" : "2012-10-17",
+    "Statement" : [
+      {
+        "Action" : [
+          "lambda:InvokeFunction"
+        ],
+        "Effect" : "Allow",
+        "Resource" : "*"
+      }
+
+    ]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "api_to_lambda" {
+  policy_arn = aws_iam_policy.invoke_lambda.arn
+  role       = aws_iam_role.lambda_role.name
+}
