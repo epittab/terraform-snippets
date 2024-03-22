@@ -19,10 +19,9 @@ resource "aws_api_gateway_rest_api" "test" {
             }
           }
           x-amazon-apigateway-integration = {
-            httpMethod           = "POST"
-            payloadFormatVersion = "1.0"
-            type                 = "HTTP_PROXY"
-            uri                  = aws_lambda_function.epb_test_lambda.invoke_arn
+            httpMethod = "POST"
+            type       = "AWS_PROXY"
+            uri        = aws_lambda_function.epb_test_lambda.invoke_arn
           }
         }
       }
