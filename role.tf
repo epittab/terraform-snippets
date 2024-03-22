@@ -97,5 +97,5 @@ resource "aws_iam_policy" "invoke_lambda" {
 
 resource "aws_iam_role_policy_attachment" "api_to_lambda" {
   policy_arn = aws_iam_policy.invoke_lambda.arn
-  role       = aws_iam_role.lambda_role.name
+  role       = aws_iam_role.apigw_role.name
 }
