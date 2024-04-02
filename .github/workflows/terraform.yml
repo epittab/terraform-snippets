@@ -75,7 +75,7 @@ jobs:
     - name: Check if S3 exists
       id: checks3
       run: | 
-        resp=$(aws s3 ls) 
+        resp=$(aws s3 ls | grep ' ui-app-bucket') 
         echo "result=$resp" >> $GITHUB_OUTPUT    
       env: 
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
