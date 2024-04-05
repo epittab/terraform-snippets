@@ -76,7 +76,7 @@ jobs:
       id: checks3
       run: | 
         resp=$(aws s3 ls | grep ' ui-app-bucket') 
-        echo "result=$resp" >> $GITHUB_OUTPUT    
+        [[ $resp  = *" ui-app-bucket"* ]] && echo "result=$resp" >> $GITHUB_OUTPUT    
       env: 
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
