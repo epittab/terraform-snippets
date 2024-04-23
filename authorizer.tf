@@ -65,7 +65,7 @@ resource "aws_lambda_function" "authorizer" {
   filename      = data.archive_file.authorizer_lambda.output_path
   function_name = "api_gateway_authorizer"
   role          = aws_iam_role.lambda.arn
-  handler       = "exports.example"
+  handler       = "exports.handler"
 
   source_code_hash = data.archive_file.authorizer_lambda.output_base64sha256
 
