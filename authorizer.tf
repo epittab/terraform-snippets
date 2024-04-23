@@ -69,5 +69,5 @@ resource "aws_lambda_function" "authorizer" {
 
   source_code_hash = data.archive_file.authorizer_lambda.output_base64sha256
 
-  runtime = "nodejs16.x"
+  runtime = "nodejs18.x"
 }
